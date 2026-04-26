@@ -20,7 +20,7 @@ img {
     width: 130%;
 }
 
-/* SOL */
+/* ☀️ SOL ANIMADO */
 .sun {
     display: flex;
     align-items: center;
@@ -31,8 +31,23 @@ img {
     width: 10em;
     height: 10em;
     border-radius: 50%;
-    box-shadow: 0 0 3em rgb(255, 128, 0);
-    animation: orbit 50s linear infinite;
+    animation: sunPulse 4s ease-in-out infinite;
+}
+
+/* 🔥 ANIMAÇÃO DO SOL */
+@keyframes sunPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 3em rgb(255, 140, 0);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 5em rgb(255, 180, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 3em rgb(255, 140, 0);
+    }
 }
 
 /* ÓRBITAS */
@@ -53,103 +68,72 @@ img {
     border-radius: 50%;
 }
 
-/* 🔥 AQUI ESTÁ A CORREÇÃO */
-
-/* Mercúrio */
+/* 🌍 ANIMAÇÕES COM DELAY (SEM COMEÇAR JUNTOS) */
 .mercury {
-    top: 12.5em;
-    left: 12.5em;
-    width: 15em;
-    height: 15em;
+    top: 12.5em; left: 12.5em;
+    width: 15em; height: 15em;
     animation: orbit 68.7s linear infinite;
     animation-delay: -5s;
 }
 
-/* Vênus */
 .venus {
-    top: 10em;
-    left: 10em;
-    width: 20em;
-    height: 20em;
+    top: 10em; left: 10em;
+    width: 20em; height: 20em;
     animation: orbit 48.7s linear infinite;
     animation-delay: -10s;
 }
 
-/* Terra */
 .earth {
-    top: 6em;
-    left: 6em;
-    width: 28em;
-    height: 28em; 
+    top: 6em; left: 6em;
+    width: 28em; height: 28em;
     animation: orbit 36.5s linear infinite;
     animation-delay: -15s;
 }
 
-/* Lua */
 .moon {
-    top: 2em;
-    right: -1em;
-    width: 7em;
-    height: 7em; 
+    top: 2em; right: -1em;
+    width: 7em; height: 7em;
     animation: orbit 2.7s linear infinite;
 }
 
-/* Marte */
 .mars {
-    top: 2em;
-    left: 2.5em;
-    width: 36em;
-    height: 36em; 
+    top: 2em; left: 2.5em;
+    width: 36em; height: 36em;
     animation: orbit 26.5s linear infinite;
     animation-delay: -20s;
 }
 
-/* Júpiter */
 .jupiter {
-    top: -2em;
-    left: -2em;
-    width: 45em;
-    height: 45em; 
+    top: -2em; left: -2em;
+    width: 45em; height: 45em;
     animation: orbit 21s linear infinite;
     animation-delay: -25s;
 }
 
-/* Saturno */
 .saturn {
-    top: -7em;
-    left: -7em;
-    width: 55em;
-    height: 55em; 
+    top: -7em; left: -7em;
+    width: 55em; height: 55em;
     animation: orbit 17s linear infinite;
     animation-delay: -30s;
 }
 
-/* Urano */
 .uranus {
-    top: -12em;
-    left: -12em;
-    width: 65em;
-    height: 65em; 
+    top: -12em; left: -12em;
+    width: 65em; height: 65em;
     animation: orbit 19s linear infinite;
     animation-delay: -35s;
 }
 
-/* Netuno */
 .neptune {
-    top: -17em;
-    left: -17em;
-    width: 75em;
-    height: 75em; 
+    top: -17em; left: -17em;
+    width: 75em; height: 75em;
     animation: orbit 15s linear infinite;
     animation-delay: -40s;
 }
 
-/* Plutão */
 .pluto {
-    top: -22em;
-    left: -22em;
-    width: 85em;
-    height: 85em; 
+    top: -22em; left: -22em;
+    width: 85em; height: 85em;
     animation: orbit 18s linear infinite;
     animation-delay: -45s;
 }
@@ -171,96 +155,35 @@ img {
     animation: orbit 30s linear infinite;
 }
 
-/* TEXTURAS (igual ao teu original) */
-.mercury::before {
-    top: 1.5em;
-    right: 0.8em;
-    width: 2em;
-    height: 2em;
-    background: url('./images/mercury.png') center/cover;
-}
+/* TEXTURAS */
+.mercury::before { top:1.5em; right:0.8em; width:2em; height:2em; background:url('./images/mercury.png') center/cover; }
+.venus::before   { top:2em; right:2em; width:2em; height:2em; background:url('./images/venus.png') center/cover; }
+.earth::before   { top:3em; right:0; width:5em; height:5em; background:url('./images/earth.png') center/cover; }
+.moon::before    { top:0.8em; right:0.2em; width:1.2em; height:1.2em; background:url('./images/moon.png') center/cover; }
+.mars::before    { top:5em; right:3em; width:3em; height:3em; background:url('./images/mars.png') center/cover; }
+.jupiter::before { top:6em; right:3em; width:5em; height:5em; background:url('./images/jupiter.png') center/cover; }
+.saturn::before  { top:7.5em; right:5em; width:4.5em; height:4.5em; background:url('./images/saturn.png') center/cover; }
+.uranus::before  { top:9em; right:6.5em; width:4em; height:4em; background:url('./images/uranus.png') center/cover; }
+.neptune::before { top:10em; right:8em; width:4em; height:4em; background:url('./images/neptune.png') center/cover; }
+.pluto::before   { top:11em; right:10em; width:4em; height:4em; background:url('./images/pluto.png') center/cover; }
 
-.venus::before {
-    top: 2em;
-    right: 2em;
-    width: 2em;
-    height: 2em;
-    background: url('./images/venus.png') center/cover;
-}
-
-.earth::before {
-    top: 3em;
-    right: 0em;
-    width: 5em;
-    height: 5em;
-    background: url('./images/earth.png') center/cover;
-}
-
-.moon::before {
-    top: 0.8em;
-    right: 0.2em;
-    width: 1.2em;
-    height: 1.2em;
-    background: url('./images/moon.png') center/cover;
-}
-
-.mars::before {
-    top: 5em;
-    right: 3em;
-    width: 3em;
-    height: 3em;
-    background: url('./images/mars.png') center/cover;
-}
-
-.jupiter::before {
-    top: 6em;
-    right: 3em;
-    width: 5em;
-    height: 5em;
-    background: url('./images/jupiter.png') center/cover;
-}
-
-.saturn::before {
-    top: 7.5em;
-    right: 5em;
-    width: 4.5em;
-    height: 4.5em;
-    background: url('./images/saturn.png') center/cover;
-}
-
-.uranus::before {
-    top: 9em;
-    right: 6.5em;
-    width: 4em;
-    height: 4em;
-    background: url('./images/uranus.png') center/cover;
-}
-
-.neptune::before {
-    top: 10em;
-    right: 8em;
-    width: 4em;
-    height: 4em;
-    background: url('./images/neptune.png') center/cover;
-}
-
-.pluto::before {
-    top: 11em;
-    right: 10em;
-    width: 4em;
-    height: 4em;
-    background: url('./images/pluto.png') center/cover;
-}
-
-/* ESTRELAS */
+/* ⭐ ESTRELAS */
 .star {
     position: absolute;
     background-color: white;
     border-radius: 50%;
     z-index: -1;
+    animation: twinkle linear infinite;
 }
 
-/* ANIMAÇÃO */
+/* ✨ ANIMAÇÃO DAS ESTRELAS */
+@keyframes twinkle {
+    0%   { opacity: 0.2; }
+    50%  { opacity: 1; }
+    100% { opacity: 0.2; }
+}
+
+/* 🔄 ÓRBITA */
 @keyframes orbit {
     to {
         transform: rotate(360deg);

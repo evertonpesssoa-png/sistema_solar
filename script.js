@@ -18,14 +18,3 @@ function createStars() {
 }
 
 createStars();
-
-
-// 🔥 opcional: randomizar posição inicial dos planetas
-const planets = document.querySelectorAll(
-  ".mercury, .venus, .earth, .mars, .jupiter, .saturn, .uranus, .neptune, .pluto"
-);
-
-planets.forEach(p => {
-  const delay = Math.random() * 100;
-  p.style.animationDelay = `-${delay}s`;
-});

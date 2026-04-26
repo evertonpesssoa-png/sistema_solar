@@ -24,15 +24,15 @@ function createStars() {
 createStars();
 
 
-// 🌌 EXPLORAÇÃO (zoom + drag)
-const universe = document.querySelector('.universe');
+// 🌌 exploração
+const containerEl = document.querySelector('.container');
 
 let scale = 1;
 let pos = { x: 0, y: 0 };
 let isDragging = false;
 let start = { x: 0, y: 0 };
 
-// 🔍 zoom
+// zoom
 window.addEventListener('wheel', (e) => {
   e.preventDefault();
 
@@ -44,8 +44,8 @@ window.addEventListener('wheel', (e) => {
   updateTransform();
 }, { passive: false });
 
-// 🎮 drag
-universe.addEventListener('mousedown', (e) => {
+// drag
+window.addEventListener('mousedown', (e) => {
   isDragging = true;
   start.x = e.clientX - pos.x;
   start.y = e.clientY - pos.y;
@@ -65,6 +65,6 @@ window.addEventListener('mouseup', () => {
 });
 
 function updateTransform() {
-  universe.style.transform =
+  containerEl.style.transform =
     `translate(${pos.x}px, ${pos.y}px) scale(${scale})`;
 }

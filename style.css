@@ -73,12 +73,11 @@ img {
 }
 
 /* ======================
-🪐 ÓRBITAS
+🪐 ÓRBITAS (CLICÁVEIS)
 ====================== */
 .mercury,
 .venus,
 .earth,
-.moon,
 .mars,
 .jupiter,
 .saturn,
@@ -91,9 +90,12 @@ img {
     border-width: 0.1em 0.1em 0 0;
     border-radius: 50%;
     transition: 0.2s;
+
+    cursor: pointer;
+    pointer-events: auto;
 }
 
-/* hover leve */
+/* hover */
 .mercury:hover,
 .venus:hover,
 .earth:hover,
@@ -112,7 +114,6 @@ img {
 .mercury { top:12.5em; left:12.5em; width:15em; height:15em; animation:orbit 68.7s linear infinite; animation-delay:-5s; }
 .venus   { top:10em; left:10em; width:20em; height:20em; animation:orbit 48.7s linear infinite; animation-delay:-10s; }
 .earth   { top:6em; left:6em; width:28em; height:28em; animation:orbit 36.5s linear infinite; animation-delay:-15s; }
-.moon    { top:2em; right:-1em; width:7em; height:7em; animation:orbit 2.7s linear infinite; }
 .mars    { top:2em; left:2.5em; width:36em; height:36em; animation:orbit 26.5s linear infinite; animation-delay:-20s; }
 .jupiter { top:-2em; left:-2em; width:45em; height:45em; animation:orbit 21s linear infinite; animation-delay:-25s; }
 .saturn  { top:-7em; left:-7em; width:55em; height:55em; animation:orbit 17s linear infinite; animation-delay:-30s; }
@@ -120,8 +121,18 @@ img {
 .neptune { top:-17em; left:-17em; width:75em; height:75em; animation:orbit 15s linear infinite; animation-delay:-40s; }
 .pluto   { top:-22em; left:-22em; width:85em; height:85em; animation:orbit 18s linear infinite; animation-delay:-45s; }
 
+/* LUA */
+.moon {
+    position: absolute;
+    top: 2em;
+    right: -1em;
+    width: 7em;
+    height: 7em;
+    animation: orbit 2.7s linear infinite;
+}
+
 /* ======================
-🌍 PLANETAS
+🌍 PLANETAS (CLICÁVEIS)
 ====================== */
 .mercury::before,
 .venus::before,
@@ -137,6 +148,8 @@ img {
     position: absolute;
     border-radius: 50%;
     animation: orbit 30s linear infinite;
+
+    pointer-events: none; /* 🔥 evita bug de clique */
 }
 
 /* TEXTURAS */
@@ -176,7 +189,7 @@ img {
 }
 
 /* ======================
-🚀 HUD (APP ESPACIAL)
+🚀 HUD
 ====================== */
 .hud {
     position: fixed;
@@ -187,36 +200,27 @@ img {
     color: white;
 }
 
-/* título */
 .title {
     position: absolute;
     top: 20px;
     left: 20px;
     font-size: 16px;
-    letter-spacing: 2px;
     opacity: 0.7;
 }
 
-/* painel info */
 .panel {
     position: absolute;
     bottom: 20px;
     left: 20px;
     width: 240px;
-
     background: rgba(0,0,0,0.4);
-    backdrop-filter: blur(12px);
-
+    backdrop-filter: blur(10px);
     padding: 15px;
-    border-radius: 12px;
-
+    border-radius: 10px;
     border: 1px solid rgba(0,150,255,0.3);
-    box-shadow: 0 0 20px rgba(0,150,255,0.2);
-
     pointer-events: auto;
 }
 
-/* controles */
 .controls {
     position: absolute;
     bottom: 20px;
@@ -227,33 +231,10 @@ img {
 .controls button {
     display: block;
     margin: 8px;
-    padding: 10px 14px;
-
-    font-size: 18px;
-    color: white;
-
+    padding: 10px;
     background: rgba(0,0,0,0.5);
     border: 1px solid rgba(0,150,255,0.4);
+    color: white;
     border-radius: 8px;
-
     cursor: pointer;
-    transition: 0.2s;
-}
-
-.controls button:hover {
-    background: rgba(0,150,255,0.3);
-    transform: scale(1.05);
-}
-
-/* mobile */
-@media (max-width: 768px) {
-    .panel {
-        width: 180px;
-        font-size: 12px;
-    }
-
-    .controls button {
-        font-size: 14px;
-        padding: 8px;
-    }
 }

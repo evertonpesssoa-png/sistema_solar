@@ -1,58 +1,26 @@
-/* ======================
-🌌 BASE
-====================== */
 body {
     margin: 0;
-    height: 100dvh;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: black;
     overflow: hidden;
-    font-family: Arial, sans-serif;
 }
 
-/* ======================
-🔍 VIEWPORT (ZOOM)
-====================== */
-.viewport {
-    width: 100vw;
-    height: 100dvh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    touch-action: none;
-}
-
-/* ======================
-🪐 CONTAINER
-====================== */
 .container {
-    font-size: clamp(3px, 1vw, 6px);
+    font-size: 6px;
     width: 40em;
     height: 40em;
     position: relative;
-    transition: transform 0.2s ease-out;
 }
 
-@media (max-width: 768px) {
-    .container {
-        font-size: clamp(2px, 2vw, 4px);
-    }
-}
-
-/* ======================
-🖼 IMAGENS
-====================== */
 img {
     height: 130%;
     width: 130%;
 }
 
-/* ======================
-☀️ SOL
-====================== */
+/* ☀️ SOL ANIMADO */
 .sun {
     display: flex;
     align-items: center;
@@ -66,18 +34,27 @@ img {
     animation: sunPulse 4s ease-in-out infinite;
 }
 
+/* 🔥 ANIMAÇÃO DO SOL */
 @keyframes sunPulse {
-    0% { transform: scale(1); box-shadow: 0 0 3em rgb(255,140,0); }
-    50% { transform: scale(1.05); box-shadow: 0 0 5em rgb(255,180,0); }
-    100% { transform: scale(1); box-shadow: 0 0 3em rgb(255,140,0); }
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 3em rgb(255, 140, 0);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 5em rgb(255, 180, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 3em rgb(255, 140, 0);
+    }
 }
 
-/* ======================
-🪐 ÓRBITAS (CLICÁVEIS)
-====================== */
+/* ÓRBITAS */
 .mercury,
 .venus,
 .earth,
+.moon,
 .mars,
 .jupiter,
 .saturn,
@@ -86,54 +63,82 @@ img {
 .pluto {
     position: absolute;
     border-style: solid;
-    border-color: rgba(255,255,255,0.2) transparent transparent transparent;
+    border-color: white transparent transparent transparent;
     border-width: 0.1em 0.1em 0 0;
     border-radius: 50%;
-    transition: 0.2s;
-
-    cursor: pointer;
-    pointer-events: auto;
 }
 
-/* hover */
-.mercury:hover,
-.venus:hover,
-.earth:hover,
-.mars:hover,
-.jupiter:hover,
-.saturn:hover,
-.uranus:hover,
-.neptune:hover,
-.pluto:hover {
-    border-color: rgba(0,150,255,0.8) transparent transparent transparent;
+/* 🌍 ANIMAÇÕES COM DELAY (SEM COMEÇAR JUNTOS) */
+.mercury {
+    top: 12.5em; left: 12.5em;
+    width: 15em; height: 15em;
+    animation: orbit 68.7s linear infinite;
+    animation-delay: -5s;
 }
 
-/* ======================
-🌍 ANIMAÇÕES
-====================== */
-.mercury { top:12.5em; left:12.5em; width:15em; height:15em; animation:orbit 68.7s linear infinite; animation-delay:-5s; }
-.venus   { top:10em; left:10em; width:20em; height:20em; animation:orbit 48.7s linear infinite; animation-delay:-10s; }
-.earth   { top:6em; left:6em; width:28em; height:28em; animation:orbit 36.5s linear infinite; animation-delay:-15s; }
-.mars    { top:2em; left:2.5em; width:36em; height:36em; animation:orbit 26.5s linear infinite; animation-delay:-20s; }
-.jupiter { top:-2em; left:-2em; width:45em; height:45em; animation:orbit 21s linear infinite; animation-delay:-25s; }
-.saturn  { top:-7em; left:-7em; width:55em; height:55em; animation:orbit 17s linear infinite; animation-delay:-30s; }
-.uranus  { top:-12em; left:-12em; width:65em; height:65em; animation:orbit 19s linear infinite; animation-delay:-35s; }
-.neptune { top:-17em; left:-17em; width:75em; height:75em; animation:orbit 15s linear infinite; animation-delay:-40s; }
-.pluto   { top:-22em; left:-22em; width:85em; height:85em; animation:orbit 18s linear infinite; animation-delay:-45s; }
+.venus {
+    top: 10em; left: 10em;
+    width: 20em; height: 20em;
+    animation: orbit 48.7s linear infinite;
+    animation-delay: -10s;
+}
 
-/* LUA */
+.earth {
+    top: 6em; left: 6em;
+    width: 28em; height: 28em;
+    animation: orbit 36.5s linear infinite;
+    animation-delay: -15s;
+}
+
 .moon {
-    position: absolute;
-    top: 2em;
-    right: -1em;
-    width: 7em;
-    height: 7em;
+    top: 2em; right: -1em;
+    width: 7em; height: 7em;
     animation: orbit 2.7s linear infinite;
 }
 
-/* ======================
-🌍 PLANETAS (CLICÁVEIS)
-====================== */
+.mars {
+    top: 2em; left: 2.5em;
+    width: 36em; height: 36em;
+    animation: orbit 26.5s linear infinite;
+    animation-delay: -20s;
+}
+
+.jupiter {
+    top: -2em; left: -2em;
+    width: 45em; height: 45em;
+    animation: orbit 21s linear infinite;
+    animation-delay: -25s;
+}
+
+.saturn {
+    top: -7em; left: -7em;
+    width: 55em; height: 55em;
+    animation: orbit 17s linear infinite;
+    animation-delay: -30s;
+}
+
+.uranus {
+    top: -12em; left: -12em;
+    width: 65em; height: 65em;
+    animation: orbit 19s linear infinite;
+    animation-delay: -35s;
+}
+
+.neptune {
+    top: -17em; left: -17em;
+    width: 75em; height: 75em;
+    animation: orbit 15s linear infinite;
+    animation-delay: -40s;
+}
+
+.pluto {
+    top: -22em; left: -22em;
+    width: 85em; height: 85em;
+    animation: orbit 18s linear infinite;
+    animation-delay: -45s;
+}
+
+/* PLANETAS */
 .mercury::before,
 .venus::before,
 .earth::before,
@@ -148,8 +153,6 @@ img {
     position: absolute;
     border-radius: 50%;
     animation: orbit 30s linear infinite;
-
-    pointer-events: none; /* 🔥 evita bug de clique */
 }
 
 /* TEXTURAS */
@@ -164,9 +167,7 @@ img {
 .neptune::before { top:10em; right:8em; width:4em; height:4em; background:url('./images/neptune.png') center/cover; }
 .pluto::before   { top:11em; right:10em; width:4em; height:4em; background:url('./images/pluto.png') center/cover; }
 
-/* ======================
-⭐ ESTRELAS
-====================== */
+/* ⭐ ESTRELAS */
 .star {
     position: absolute;
     background-color: white;
@@ -175,66 +176,16 @@ img {
     animation: twinkle linear infinite;
 }
 
+/* ✨ ANIMAÇÃO DAS ESTRELAS */
 @keyframes twinkle {
-    0% { opacity: 0.2; }
-    50% { opacity: 1; }
+    0%   { opacity: 0.2; }
+    50%  { opacity: 1; }
     100% { opacity: 0.2; }
 }
 
-/* ======================
-🔄 ÓRBITA
-====================== */
+/* 🔄 ÓRBITA */
 @keyframes orbit {
-    to { transform: rotate(360deg); }
-}
-
-/* ======================
-🚀 HUD
-====================== */
-.hud {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    pointer-events: none;
-    color: white;
-}
-
-.title {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    font-size: 16px;
-    opacity: 0.7;
-}
-
-.panel {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    width: 240px;
-    background: rgba(0,0,0,0.4);
-    backdrop-filter: blur(10px);
-    padding: 15px;
-    border-radius: 10px;
-    border: 1px solid rgba(0,150,255,0.3);
-    pointer-events: auto;
-}
-
-.controls {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    pointer-events: auto;
-}
-
-.controls button {
-    display: block;
-    margin: 8px;
-    padding: 10px;
-    background: rgba(0,0,0,0.5);
-    border: 1px solid rgba(0,150,255,0.4);
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
+    to {
+        transform: rotate(360deg);
+    }
 }

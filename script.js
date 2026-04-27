@@ -1,3 +1,6 @@
+// ======================
+// ⭐ ESTRELAS (seu código)
+// ======================
 function createStars() {
   const container = document.body;
 
@@ -22,3 +25,75 @@ function createStars() {
 }
 
 createStars();
+
+
+// ======================
+// 🔍 ZOOM UNIVERSAL
+// ======================
+const viewport = document.querySelector('.viewport');
+
+// 🔥 começa mais próximo automaticamente
+let scale = window.innerWidth < 768 ? 2 : 1.5;
+
+updateZoom();
+
+
+// ======================
+// 🖱️ SCROLL (PC)
+// ======================
+window.addEventListener('wheel', (e) => {
+  e.preventDefault();
+
+  scale -= e.deltaY * 0.001;
+
+  clampZoom();
+  updateZoom();
+}, { passive: false });
+
+
+// ======================
+// 🤏 PINCH (MOBILE)
+// ======================
+let initialDistance = null;
+
+viewport.addEventListener('touchstart', (e) => {
+  if (e.touches.length === 2) {
+    initialDistance = getDistance(e.touches);
+  }
+});
+
+viewport.addEventListener('touchmove', (e) => {
+  if (e.touches.length === 2 && initialDistance) {
+    const newDistance = getDistance(e.touches);
+
+    const zoomFactor = newDistance / initialDistance;
+    scale *= zoomFactor;
+
+    initialDistance = newDistance;
+
+    clampZoom();
+    updateZoom();
+  }
+});
+
+viewport.addEventListener('touchend', () => {
+  initialDistance = null;
+});
+
+
+// ======================
+// 🔧 FUNÇÕES
+// ======================
+function getDistance(touches) {
+  const dx = touches[0].clientX - touches[1].clientX;
+  const dy = touches[0].clientY - touches[1].clientY;
+  return Math.sqrt(dx * dx + dy * dy);
+}
+
+function clampZoom() {
+  scale = Math.min(Math.max(0.5, scale), 4);
+}
+
+function updateZoom() {
+  viewport.style.transform = `scale(${scale})`;
+}

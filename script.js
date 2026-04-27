@@ -1,18 +1,23 @@
 function createStars() {
-  const container = document.body;
+  const container = document.getElementById("stars");
 
-  for (let i = 0; i < 800; i++) {
+  // ⭐ DENSIDADE ADAPTATIVA
+  const starCount = window.innerWidth < 600 ? 300 : 800;
+
+  for (let i = 0; i < starCount; i++) {
     const star = document.createElement("div");
     star.className = "star";
 
     const size = Math.random() * 2;
-    const duration = Math.random() * 5 + 2; // 2s a 7s
+    const duration = Math.random() * 5 + 2;
     const delay = Math.random() * 5;
 
     star.style.width = size + "px";
     star.style.height = size + "px";
-    star.style.top = Math.random() * 100 + "%";
-    star.style.left = Math.random() * 100 + "%";
+
+    // 🔥 ocupa tela inteira
+    star.style.top = Math.random() * window.innerHeight + "px";
+    star.style.left = Math.random() * window.innerWidth + "px";
 
     star.style.animationDuration = duration + "s";
     star.style.animationDelay = delay + "s";
@@ -22,3 +27,10 @@ function createStars() {
 }
 
 createStars();
+
+/* 🔄 recria estrelas ao redimensionar */
+window.addEventListener("resize", () => {
+  const stars = document.getElementById("stars");
+  stars.innerHTML = "";
+  createStars();
+});

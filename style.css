@@ -3,12 +3,13 @@
 ====================== */
 body {
     margin: 0;
-    height: 100dvh; /* 🔥 corrige mobile */
+    height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: black;
     overflow: hidden;
+    font-family: Arial, sans-serif;
 }
 
 /* ======================
@@ -21,21 +22,20 @@ body {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-
-    touch-action: none; /* 📱 necessário pro pinch */
+    touch-action: none;
 }
 
 /* ======================
-🪐 CONTAINER RESPONSIVO
+🪐 CONTAINER
 ====================== */
 .container {
-    font-size: clamp(3px, 1vw, 6px); /* 🔥 adapta automático */
+    font-size: clamp(3px, 1vw, 6px);
     width: 40em;
     height: 40em;
     position: relative;
+    transition: transform 0.2s ease-out;
 }
 
-/* 📱 ajuste extra mobile */
 @media (max-width: 768px) {
     .container {
         font-size: clamp(2px, 2vw, 4px);
@@ -51,7 +51,7 @@ img {
 }
 
 /* ======================
-☀️ SOL ANIMADO
+☀️ SOL
 ====================== */
 .sun {
     display: flex;
@@ -66,20 +66,10 @@ img {
     animation: sunPulse 4s ease-in-out infinite;
 }
 
-/* 🔥 brilho do sol */
 @keyframes sunPulse {
-    0% {
-        transform: scale(1);
-        box-shadow: 0 0 3em rgb(255, 140, 0);
-    }
-    50% {
-        transform: scale(1.05);
-        box-shadow: 0 0 5em rgb(255, 180, 0);
-    }
-    100% {
-        transform: scale(1);
-        box-shadow: 0 0 3em rgb(255, 140, 0);
-    }
+    0% { transform: scale(1); box-shadow: 0 0 3em rgb(255,140,0); }
+    50% { transform: scale(1.05); box-shadow: 0 0 5em rgb(255,180,0); }
+    100% { transform: scale(1); box-shadow: 0 0 3em rgb(255,140,0); }
 }
 
 /* ======================
@@ -97,13 +87,27 @@ img {
 .pluto {
     position: absolute;
     border-style: solid;
-    border-color: white transparent transparent transparent;
+    border-color: rgba(255,255,255,0.2) transparent transparent transparent;
     border-width: 0.1em 0.1em 0 0;
     border-radius: 50%;
+    transition: 0.2s;
+}
+
+/* hover leve */
+.mercury:hover,
+.venus:hover,
+.earth:hover,
+.mars:hover,
+.jupiter:hover,
+.saturn:hover,
+.uranus:hover,
+.neptune:hover,
+.pluto:hover {
+    border-color: rgba(0,150,255,0.8) transparent transparent transparent;
 }
 
 /* ======================
-🌍 ANIMAÇÕES (DESINCRONIZADAS)
+🌍 ANIMAÇÕES
 ====================== */
 .mercury { top:12.5em; left:12.5em; width:15em; height:15em; animation:orbit 68.7s linear infinite; animation-delay:-5s; }
 .venus   { top:10em; left:10em; width:20em; height:20em; animation:orbit 48.7s linear infinite; animation-delay:-10s; }
@@ -135,7 +139,7 @@ img {
     animation: orbit 30s linear infinite;
 }
 
-/* 🌍 TEXTURAS */
+/* TEXTURAS */
 .mercury::before { top:1.5em; right:0.8em; width:2em; height:2em; background:url('./images/mercury.png') center/cover; }
 .venus::before   { top:2em; right:2em; width:2em; height:2em; background:url('./images/venus.png') center/cover; }
 .earth::before   { top:3em; right:0; width:5em; height:5em; background:url('./images/earth.png') center/cover; }
@@ -158,10 +162,9 @@ img {
     animation: twinkle linear infinite;
 }
 
-/* ✨ brilho */
 @keyframes twinkle {
-    0%   { opacity: 0.2; }
-    50%  { opacity: 1; }
+    0% { opacity: 0.2; }
+    50% { opacity: 1; }
     100% { opacity: 0.2; }
 }
 
@@ -169,7 +172,88 @@ img {
 🔄 ÓRBITA
 ====================== */
 @keyframes orbit {
-    to {
-        transform: rotate(360deg);
+    to { transform: rotate(360deg); }
+}
+
+/* ======================
+🚀 HUD (APP ESPACIAL)
+====================== */
+.hud {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+    color: white;
+}
+
+/* título */
+.title {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 16px;
+    letter-spacing: 2px;
+    opacity: 0.7;
+}
+
+/* painel info */
+.panel {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 240px;
+
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(12px);
+
+    padding: 15px;
+    border-radius: 12px;
+
+    border: 1px solid rgba(0,150,255,0.3);
+    box-shadow: 0 0 20px rgba(0,150,255,0.2);
+
+    pointer-events: auto;
+}
+
+/* controles */
+.controls {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    pointer-events: auto;
+}
+
+.controls button {
+    display: block;
+    margin: 8px;
+    padding: 10px 14px;
+
+    font-size: 18px;
+    color: white;
+
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(0,150,255,0.4);
+    border-radius: 8px;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.controls button:hover {
+    background: rgba(0,150,255,0.3);
+    transform: scale(1.05);
+}
+
+/* mobile */
+@media (max-width: 768px) {
+    .panel {
+        width: 180px;
+        font-size: 12px;
+    }
+
+    .controls button {
+        font-size: 14px;
+        padding: 8px;
     }
 }

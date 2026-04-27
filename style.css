@@ -1,6 +1,9 @@
+/* ======================
+🌌 BASE
+====================== */
 body {
     margin: 0;
-    height: 100vh;
+    height: 100dvh; /* 🔥 corrige mobile */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -8,19 +11,48 @@ body {
     overflow: hidden;
 }
 
+/* ======================
+🔍 VIEWPORT (ZOOM)
+====================== */
+.viewport {
+    width: 100vw;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    touch-action: none; /* 📱 necessário pro pinch */
+}
+
+/* ======================
+🪐 CONTAINER RESPONSIVO
+====================== */
 .container {
-    font-size: 6px;
+    font-size: clamp(3px, 1vw, 6px); /* 🔥 adapta automático */
     width: 40em;
     height: 40em;
     position: relative;
 }
 
+/* 📱 ajuste extra mobile */
+@media (max-width: 768px) {
+    .container {
+        font-size: clamp(2px, 2vw, 4px);
+    }
+}
+
+/* ======================
+🖼 IMAGENS
+====================== */
 img {
     height: 130%;
     width: 130%;
 }
 
-/* ☀️ SOL ANIMADO */
+/* ======================
+☀️ SOL ANIMADO
+====================== */
 .sun {
     display: flex;
     align-items: center;
@@ -34,7 +66,7 @@ img {
     animation: sunPulse 4s ease-in-out infinite;
 }
 
-/* 🔥 ANIMAÇÃO DO SOL */
+/* 🔥 brilho do sol */
 @keyframes sunPulse {
     0% {
         transform: scale(1);
@@ -50,7 +82,9 @@ img {
     }
 }
 
-/* ÓRBITAS */
+/* ======================
+🪐 ÓRBITAS
+====================== */
 .mercury,
 .venus,
 .earth,
@@ -68,77 +102,23 @@ img {
     border-radius: 50%;
 }
 
-/* 🌍 ANIMAÇÕES COM DELAY (SEM COMEÇAR JUNTOS) */
-.mercury {
-    top: 12.5em; left: 12.5em;
-    width: 15em; height: 15em;
-    animation: orbit 68.7s linear infinite;
-    animation-delay: -5s;
-}
+/* ======================
+🌍 ANIMAÇÕES (DESINCRONIZADAS)
+====================== */
+.mercury { top:12.5em; left:12.5em; width:15em; height:15em; animation:orbit 68.7s linear infinite; animation-delay:-5s; }
+.venus   { top:10em; left:10em; width:20em; height:20em; animation:orbit 48.7s linear infinite; animation-delay:-10s; }
+.earth   { top:6em; left:6em; width:28em; height:28em; animation:orbit 36.5s linear infinite; animation-delay:-15s; }
+.moon    { top:2em; right:-1em; width:7em; height:7em; animation:orbit 2.7s linear infinite; }
+.mars    { top:2em; left:2.5em; width:36em; height:36em; animation:orbit 26.5s linear infinite; animation-delay:-20s; }
+.jupiter { top:-2em; left:-2em; width:45em; height:45em; animation:orbit 21s linear infinite; animation-delay:-25s; }
+.saturn  { top:-7em; left:-7em; width:55em; height:55em; animation:orbit 17s linear infinite; animation-delay:-30s; }
+.uranus  { top:-12em; left:-12em; width:65em; height:65em; animation:orbit 19s linear infinite; animation-delay:-35s; }
+.neptune { top:-17em; left:-17em; width:75em; height:75em; animation:orbit 15s linear infinite; animation-delay:-40s; }
+.pluto   { top:-22em; left:-22em; width:85em; height:85em; animation:orbit 18s linear infinite; animation-delay:-45s; }
 
-.venus {
-    top: 10em; left: 10em;
-    width: 20em; height: 20em;
-    animation: orbit 48.7s linear infinite;
-    animation-delay: -10s;
-}
-
-.earth {
-    top: 6em; left: 6em;
-    width: 28em; height: 28em;
-    animation: orbit 36.5s linear infinite;
-    animation-delay: -15s;
-}
-
-.moon {
-    top: 2em; right: -1em;
-    width: 7em; height: 7em;
-    animation: orbit 2.7s linear infinite;
-}
-
-.mars {
-    top: 2em; left: 2.5em;
-    width: 36em; height: 36em;
-    animation: orbit 26.5s linear infinite;
-    animation-delay: -20s;
-}
-
-.jupiter {
-    top: -2em; left: -2em;
-    width: 45em; height: 45em;
-    animation: orbit 21s linear infinite;
-    animation-delay: -25s;
-}
-
-.saturn {
-    top: -7em; left: -7em;
-    width: 55em; height: 55em;
-    animation: orbit 17s linear infinite;
-    animation-delay: -30s;
-}
-
-.uranus {
-    top: -12em; left: -12em;
-    width: 65em; height: 65em;
-    animation: orbit 19s linear infinite;
-    animation-delay: -35s;
-}
-
-.neptune {
-    top: -17em; left: -17em;
-    width: 75em; height: 75em;
-    animation: orbit 15s linear infinite;
-    animation-delay: -40s;
-}
-
-.pluto {
-    top: -22em; left: -22em;
-    width: 85em; height: 85em;
-    animation: orbit 18s linear infinite;
-    animation-delay: -45s;
-}
-
-/* PLANETAS */
+/* ======================
+🌍 PLANETAS
+====================== */
 .mercury::before,
 .venus::before,
 .earth::before,
@@ -155,7 +135,7 @@ img {
     animation: orbit 30s linear infinite;
 }
 
-/* TEXTURAS */
+/* 🌍 TEXTURAS */
 .mercury::before { top:1.5em; right:0.8em; width:2em; height:2em; background:url('./images/mercury.png') center/cover; }
 .venus::before   { top:2em; right:2em; width:2em; height:2em; background:url('./images/venus.png') center/cover; }
 .earth::before   { top:3em; right:0; width:5em; height:5em; background:url('./images/earth.png') center/cover; }
@@ -167,7 +147,9 @@ img {
 .neptune::before { top:10em; right:8em; width:4em; height:4em; background:url('./images/neptune.png') center/cover; }
 .pluto::before   { top:11em; right:10em; width:4em; height:4em; background:url('./images/pluto.png') center/cover; }
 
-/* ⭐ ESTRELAS */
+/* ======================
+⭐ ESTRELAS
+====================== */
 .star {
     position: absolute;
     background-color: white;
@@ -176,14 +158,16 @@ img {
     animation: twinkle linear infinite;
 }
 
-/* ✨ ANIMAÇÃO DAS ESTRELAS */
+/* ✨ brilho */
 @keyframes twinkle {
     0%   { opacity: 0.2; }
     50%  { opacity: 1; }
     100% { opacity: 0.2; }
 }
 
-/* 🔄 ÓRBITA */
+/* ======================
+🔄 ÓRBITA
+====================== */
 @keyframes orbit {
     to {
         transform: rotate(360deg);
